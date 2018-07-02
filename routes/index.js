@@ -4,39 +4,39 @@ var router = express.Router();
 const db = require('../utils/db')
 const tableName = "shoppingList"
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  db.findAll(tableName).then(function(results){
+router.get('/', (req, res, next) => {
+  db.findAll(tableName).then((results) => {
     res.json(results)
   })
 });
 
-router.get('/:id', function(req,res,next){
-  db.findById(tableName, req.params.id).then(function(results){
+router.get('/:id', (req,res,next) => {
+  db.findById(tableName, req.params.id).then((results) => {
     res.json(results)
   })
 })
 
-router.post('/', function(req,res,next){
+router.post('/', (req,res,next) => {
   db.insertNew(tableName, {
     product: req.body.product,
     quantity: req.body.quantity
 
-  }).then(function(results){
+  }).then((results) => {
     res.json(results)
   })
 })
 
-router.put('/:id',function(req,res,next){
+router.put('/:id', (req,res,next) => {
   db.update(tableName,req.params.id,{
     product: req.body.product,
     quantity: req.body.quantity
-  }).then(function(results){
+  }).then((results) => {
     res.json(results)
   })
 })
 
-router.delete('/:id',function(req,res,next){
-  db.delete(tableName, req.params.id).then(function(results){
+router.delete('/:id', (req,res,next) => {
+  db.delete(tableName, req.params.id).then((results) => {
     res.json(results)
   })
 })
