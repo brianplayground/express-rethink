@@ -4,19 +4,19 @@ var router = express.Router();
 const db = require('../utils/db')
 const tableName = "shoppingList"
 /* GET home page. */
-router.get('/', (req, res, next) => {
+router.get('/', (req, res) => {
   db.findAll(tableName).then((results) => {
     res.json(results)
   })
 });
 
-router.get('/:id', (req,res,next) => {
+router.get('/:id', (req,res) => {
   db.findById(tableName, req.params.id).then((results) => {
     res.json(results)
   })
 })
 
-router.post('/', (req,res,next) => {
+router.post('/', (req,res) => {
   db.insertNew(tableName, {
     product: req.body.product,
     quantity: req.body.quantity
@@ -26,7 +26,7 @@ router.post('/', (req,res,next) => {
   })
 })
 
-router.put('/:id', (req,res,next) => {
+router.put('/:id', (req,res) => {
   db.update(tableName,req.params.id,{
     product: req.body.product,
     quantity: req.body.quantity
@@ -35,7 +35,7 @@ router.put('/:id', (req,res,next) => {
   })
 })
 
-router.delete('/:id', (req,res,next) => {
+router.delete('/:id', (req,res) => {
   db.delete(tableName, req.params.id).then((results) => {
     res.json(results)
   })
